@@ -80,4 +80,12 @@ class StatusesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def recent
+    since = Time.now-1.day unless params[:since]
+    @statuses = Status.recent(since)
+    respond_to do |format|
+      format.json { render json: @statuses }
+    end
+  end
 end

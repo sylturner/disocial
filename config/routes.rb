@@ -1,7 +1,13 @@
 Disocial::Application.routes.draw do
+  resources :friends
   resources :profiles
-  resources :statuses
+  resources :statuses do
+    collection do
+      get "recent"
+    end
+  end
   match 'profile' => 'profiles#me'
+  match 'feed' => 'feed#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +58,7 @@ Disocial::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'statuses#index'
+  root :to => 'feed#index'
 
   # See how all your routes lay out with "rake routes"
 

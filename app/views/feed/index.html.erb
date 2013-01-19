@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>Feed</h1>
+</div>
+<table class="table table-striped">
+  <tbody>
+    <% @updates.each do |status| %>
+      <tr>
+        <td><strong><%= status["friend"]["name"] %></strong><br/><%= status["message"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
