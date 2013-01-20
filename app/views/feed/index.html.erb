@@ -5,7 +5,11 @@
   <tbody>
     <% @updates.each do |status| %>
       <tr>
-        <td><strong><%= status["friend"]["name"] %></strong><br/><%= status["message"] %></td>
+        <td>
+          <strong><%= status["friend"]["name"] %></strong><br/>
+          <%= status["message"] %><br/>
+          <em><%= time_ago_in_words(status["updated_at"]) %> ago</em>
+        </td>
       </tr>
     <% end %>
   </tbody>
