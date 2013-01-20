@@ -3,7 +3,14 @@
 </div>
 <table class="table table-striped">
   <tbody>
-    <% @updates.each do |status| %>
+    <% if !@updates[:offline_friends].blank? %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        It looks like <%= raw @updates[:offline_friends].collect{|friend| link_to friend["name"], friend}.join(", ") %>
+        <%= @updates[:offline_friends].size == 1 ? " is " : " are " %> offline
+      </div>
+    <% end %>
+    <% @updates[:updates].each do |status| %>
       <tr>
         <td>
           <strong><%= status["friend"]["name"] %></strong><br/>
