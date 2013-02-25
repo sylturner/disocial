@@ -83,9 +83,14 @@ class ProfilesController < ApplicationController
 
   def me
     @profile = Profile.first
-    respond_to do |format|
-      format.html
-      format.json { render json: @profile }
+
+    if @profile.nil? then
+      redirect_to :action => 'new', :notice => "It looks like you don't currently have a profile; please create one."
+    else
+      respond_to do |format|
+        format.html
+        format.json { render json: @profile }
+      end
     end
   end
 
